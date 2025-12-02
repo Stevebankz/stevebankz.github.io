@@ -222,27 +222,42 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // ************** PUBLICATIONS DATA **************
-    // Edit this list when you have new publications.
-    const publications = [
-      {
-        title: "Your Paper Title 1",
-        authors: "C. S. N. Steve, A. Coauthor",
-        venue: "Conference / Journal Name, 2023",
-        links: [
-          { label: "PDF", url: "https://..." },
-          { label: "DOI", url: "https://doi.org/..." }
-        ]
-      },
-      {
-        title: "Your Paper Title 2",
-        authors: "C. S. N. Steve, B. Coauthor",
-        venue: "Journal Name, 2022",
-        links: [
-          { label: "PDF", url: "https://..." }
-        ]
-      },
-      // Add more items as needed
-    ];
+// Edit this list when you have new publications.
+const publications = [
+  {
+    title: "Decoding Disinformation: A Feature-Driven Explainable AI Approach to Multi-Domain Fake News Detection",
+    authors: "Nwaiwu S, Jongsawat N, Tungkasthan A",
+    venue: "Applied Sciences, 2025",
+    links: [
+      { label: "DOI", url: "https://doi.org/10.3390/app15179498" }
+    ]
+  },
+  {
+    title: "The brittleness of transformer feature fusion: A comparative study of model robustness in engineering misinformation detection",
+    authors: "Steve Nwaiwu, Nipat Jongsawat, Anucha Tungkasthan",
+    venue: "Results in Engineering, 2025",
+    links: [
+      { label: "DOI", url: "https://doi.org/10.1016/j.rineng.2025.107783" }
+    ]
+  },
+  {
+    title: "Fine-Tuned BERT Model for Hate Speech Detection in Political Discourse",
+    authors: "S. Nwaiwu, N. Jongsawat, A. Tungkasthan, J. Thaloey",
+    venue: "22nd International Conference on ICT & Knowledge Engineering (ICT&KE), 2024",
+    links: [
+      { label: "DOI", url: "https://doi.org/10.1109/ICTKE62841.2024.10787162" }
+    ]
+  },
+  {
+    title: "Parameter-efficient fine-tuning for low-resource text classification: a comparative study of LoRA, IA3, and ReFT",
+    authors: "Nwaiwu S",
+    venue: "Frontiers in Big Data, 2025",
+    links: [
+      { label: "DOI", url: "https://doi.org/10.3389/fdata.2025.1677331" }
+    ]
+  }
+];
+
 
     function renderPublications() {
       const container = document.getElementById('pub-list');
