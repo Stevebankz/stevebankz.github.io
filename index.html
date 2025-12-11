@@ -1,31 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Steve Nwaiwu | AI Research Portfolio</title>
+  
+  <title>Steve Nwaiwu | AI Researcher & Practitioner</title>
+  <meta name="description" content="Academic portfolio of Steve Nwaiwu, specializing in Explainable AI (XAI), Robust Machine Learning, and Neuro-symbolic reasoning." />
+  <meta name="keywords" content="Steve Nwaiwu, AI Research, XAI, NLP, Machine Learning, RMUTT" />
+  <meta name="author" content="Steve Nwaiwu" />
+  
+  <meta property="og:title" content="Steve Nwaiwu | AI Research Portfolio" />
+  <meta property="og:description" content="Exploring the intersection of XAI, Robustness, and Neuro-symbolic AI." />
+  <meta property="og:type" content="website" />
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
             background: '#020617', // slate-950
-            card: '#020617',       // dark card
+            card: '#0f172a',       // slate-900 (slightly lighter than bg)
             accent: '#38bdf8',     // sky-400
+            secondary: '#94a3b8',  // slate-400
           },
+          animation: {
+            'blob': 'blob 7s infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            }
+          }
         },
       },
     };
   </script>
 
   <style>
-    html {
-      scroll-behavior: smooth;
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
     }
-    /* Simple fade/slide animation */
+    ::-webkit-scrollbar-track {
+      background: #020617; 
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155; 
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8; 
+    }
+
+    /* Animation Utilities */
     .fade-section {
       opacity: 0;
       transform: translateY(20px);
@@ -35,268 +69,252 @@
       opacity: 1;
       transform: translateY(0);
     }
+    
+    /* Navigation Active State */
+    .nav-link.active {
+      color: #38bdf8; /* accent color */
+      font-weight: 600;
+    }
   </style>
 </head>
 
-<body class="bg-background text-slate-100 min-h-screen">
+<body class="bg-background text-slate-100 min-h-screen relative overflow-x-hidden selection:bg-accent selection:text-slate-900">
 
-  <!-- NAVBAR -->
-  <header class="sticky top-0 z-30 bg-background/90 backdrop-blur border-b border-slate-800">
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+  </div>
+
+  <header class="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
     <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
-      <div class="font-semibold tracking-tight">
+      <a href="#" class="font-semibold tracking-tight hover:text-accent transition">
         <span class="text-slate-100">Steve Nwaiwu</span>
-        <span class="hidden sm:inline text-slate-400 text-sm ml-2">AI Research Portfolio</span>
-      </div>
-      <nav class="flex gap-4 text-sm">
-        <a href="#about" class="hover:text-accent">About</a>
-        <a href="#research" class="hover:text-accent">Research</a>
-        <a href="#publications" class="hover:text-accent">Publications</a>
-        <a href="#links" class="hover:text-accent">Links</a>
+        <span class="hidden sm:inline text-accent text-xs ml-2 uppercase tracking-widest border border-slate-700 rounded px-1 py-0.5">Researcher</span>
+      </a>
+      
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
+        <a href="#about" class="nav-link hover:text-accent transition">About</a>
+        <a href="#news" class="nav-link hover:text-accent transition">News</a>
+        <a href="#research" class="nav-link hover:text-accent transition">Interests</a>
+        <a href="#publications" class="nav-link hover:text-accent transition">Publications</a>
       </nav>
+
+      <button class="md:hidden text-slate-300 hover:text-accent">
+        <i class="ph ph-list text-2xl"></i>
+      </button>
     </div>
   </header>
 
-  <!-- HERO / ABOUT -->
-  <section id="about" class="max-w-5xl mx-auto px-4 py-10 sm:py-16 fade-section">
-    <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
-      <!-- Photo -->
-      <div class="flex-shrink-0">
-        <!-- Replace profile.jpg with your actual image file -->
-        <img
-          src="your-photo.jpg"
-          alt="Profile photo"
-          class="w-40 h-40 rounded-full object-cover border-2 border-slate-700 shadow-lg"
-        />
+  <main class="pt-20">
+    <section id="about" class="max-w-5xl mx-auto px-4 py-16 sm:py-24 fade-section">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+          <img
+            src="your-photo.jpg" 
+            alt="Steve Nwaiwu Portrait"
+            class="relative w-40 h-40 rounded-full object-cover border-2 border-slate-800 shadow-2xl"
+          />
+        </div>
+
+        <div class="flex-1 text-center md:text-left">
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-white">
+            Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500">Steve</span>.
+          </h1>
+          <p class="text-lg text-slate-300 mb-6 leading-relaxed max-w-2xl">
+            I am a research-driven AI practitioner focused on <span class="text-accent">Explainable AI</span>, <span class="text-accent">Robust ML</span>, and <span class="text-accent">Neuro-symbolic reasoning</span>. 
+            I build <span class="font-semibold text-slate-100">transparent and reliable AI systems</span> for high-stakes real-world environments, bridging the gap between deep learning performance and human interpretability.
+          </p>
+
+          <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
+            <a href="cv.pdf" download class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 text-slate-900 font-semibold text-sm hover:bg-white hover:scale-105 transition transform">
+              <i class="ph-bold ph-download-simple"></i> Download CV
+            </a>
+            <a href="mailto:chinonso_s@mail.rmutt.ac.th" class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-700 text-slate-300 text-sm hover:border-accent hover:text-accent hover:bg-accent/5 transition">
+              <i class="ph-bold ph-envelope"></i> Contact Me
+            </a>
+            <div class="flex items-center gap-2 px-2 text-slate-500">
+              <a href="https://github.com/Stevebankz" target="_blank" class="p-2 hover:text-white transition"><i class="ph-fill ph-github-logo text-xl"></i></a>
+              <a href="https://linkedin.com/in/steve0147/" target="_blank" class="p-2 hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
+              <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="p-2 hover:text-white transition"><i class="ph-fill ph-graduation-cap text-xl"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
-
-     <!-- Intro text -->
-<div class="flex-1">
-  <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-    Steve Nwaiwu
-  </h1>
-  <p class="text-slate-300 mb-4">
-    Research-driven AI practitioner focusing on
-    <span class="text-accent font-semibold">Explainable AI</span>,
-    <span class="text-accent font-semibold">robust machine learning</span>, and
-    <span class="text-accent font-semibold">neuro-symbolic reasoning</span>.
-    My work spans NLP, text mining, misinformation and hate-speech detection,
-    and deep-learning interpretability. I am motivated by building
-    <span class="font-semibold">transparent, reliable, and socially responsible</span>
-    AI systems for high-stakes real-world environments.
-  </p>
-
-  <div class="flex flex-wrap gap-3 mt-4">
+    </section>
     
-    <!-- Download CV -->
-    <a
-      href="cv.pdf"
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent text-slate-950 font-semibold text-sm hover:bg-sky-300 transition"
-      download
-    >
-      Download CV
-    </a>
+    <section id="news" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+        <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
+          <i class="ph-duotone ph-megaphone text-accent"></i> Recent Updates
+        </h2>
+        <div class="border-l-2 border-slate-800 ml-3 space-y-8">
+            <div class="relative pl-8">
+                <span class="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-slate-900 border-2 border-accent"></span>
+                <span class="text-xs font-mono text-accent mb-1 block">Jan 2025</span>
+                <p class="text-slate-300">Paper titled <strong>"Decoding Disinformation"</strong> published in <em class="text-slate-400">Applied Sciences</em>.</p>
+            </div>
+            <div class="relative pl-8">
+                <span class="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-slate-900 border-2 border-slate-600"></span>
+                <span class="text-xs font-mono text-slate-500 mb-1 block">Dec 2024</span>
+                <p class="text-slate-300">Presented research on Hate Speech Detection at the <strong>ICT&KE 2024 Conference</strong>.</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Google Scholar button -->
-    <a
-      href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ&hl=en&authuser=1"
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-sm hover:border-accent hover:text-accent transition"
-      target="_blank"
-    >
-      Google Scholar
-    </a>
+    <section id="research" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+      <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
+        <i class="ph-duotone ph-brain text-accent"></i> Research Interests
+      </h2>
 
-    <!-- Email Me button -->
-    <a
-      href="mailto:chinonso_s@mail.rmutt.ac.th"
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-slate-600 text-sm hover:border-accent hover:text-accent transition"
-    >
-      Email Me
-    </a>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="group bg-card border border-slate-800 rounded-xl p-6 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition duration-300">
+          <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-slate-900 transition text-accent">
+            <i class="ph-bold ph-magnifying-glass text-xl"></i>
+          </div>
+          <h3 class="font-semibold mb-2 text-slate-100">Explainable & Robust AI</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Investigating layer-wise interpretability (LRP), causal rationale stability, and evaluating deep models under adversarial perturbations to ensure reliability.
+          </p>
+        </div>
 
-  </div>
-</div>
+        <div class="group bg-card border border-slate-800 rounded-xl p-6 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition duration-300">
+          <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-slate-900 transition text-accent">
+            <i class="ph-bold ph-graph text-xl"></i>
+          </div>
+          <h3 class="font-semibold mb-2 text-slate-100">Neuro-Symbolic Reasoning</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Bridging neural representations with symbolic logic and causal abstractions to verify and align model reasoning with its actions.
+          </p>
+        </div>
 
-  </section>
+        <div class="group bg-card border border-slate-800 rounded-xl p-6 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition duration-300">
+          <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-slate-900 transition text-accent">
+            <i class="ph-bold ph-shield-warning text-xl"></i>
+          </div>
+          <h3 class="font-semibold mb-2 text-slate-100">Social Harm Detection</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Weakly supervised NLP for misinformation and hate speech detection, emphasizing fairness and mitigating bias in high-stakes deployments.
+          </p>
+        </div>
 
-  <!-- RESEARCH INTERESTS -->
-  <section id="research" class="max-w-5xl mx-auto px-4 py-8 fade-section">
-    <h2 class="text-2xl font-semibold mb-4 border-b border-slate-700 pb-2">
-      Research Interests
-    </h2>
+        <div class="group bg-card border border-slate-800 rounded-xl p-6 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5 transition duration-300">
+          <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-slate-900 transition text-accent">
+            <i class="ph-bold ph-eye text-xl"></i>
+          </div>
+          <h3 class="font-semibold mb-2 text-slate-100">Multimodal Interpretability</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Extending XAI methods from text to vision systems for real-world monitoring, environmental, and welfare applications.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <div class="grid sm:grid-cols-2 gap-4">
-      <div class="bg-card border border-slate-800 rounded-xl p-4">
-        <h3 class="font-semibold mb-2 text-accent">Explainable & Robust AI</h3>
-        <p class="text-sm text-slate-300">
-          Layer-wise interpretability (e.g., LRP), causal rationale stability, and
-          evaluation of deep models under adversarial or environmental perturbations.
-        </p>
+    <section id="publications" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="flex items-center gap-2 text-2xl font-semibold text-slate-100">
+            <i class="ph-duotone ph-books text-accent"></i> Selected Publications
+        </h2>
+        <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="text-xs text-accent hover:underline flex items-center gap-1">
+            View Google Scholar <i class="ph-bold ph-arrow-up-right"></i>
+        </a>
       </div>
 
-      <div class="bg-card border border-slate-800 rounded-xl p-4">
-        <h3 class="font-semibold mb-2 text-accent">Neuro-Symbolic & Causal Reasoning</h3>
-        <p class="text-sm text-slate-300">
-          Bridging neural representations with symbolic logic and causal abstractions
-          to verify and align model reasoning with its actions.
-        </p>
+      <div id="pub-list" class="space-y-4"></div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-950 mt-12">
+    <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="font-semibold text-slate-400">Steve Nwaiwu</span>
+        <span class="text-xs">© <span id="year"></span> All rights reserved.</span>
       </div>
-
-      <div class="bg-card border border-slate-800 rounded-xl p-4">
-        <h3 class="font-semibold mb-2 text-accent">NLP & Social Harm Detection</h3>
-        <p class="text-sm text-slate-300">
-          Weakly supervised and domain-adaptive NLP for misinformation, hate speech,
-          and social harm, with emphasis on fairness and interpretability.
-        </p>
+      <div class="flex gap-4">
+         <a href="#" class="hover:text-accent transition">Github</a>
+         <a href="#" class="hover:text-accent transition">LinkedIn</a>
+         <a href="#" class="hover:text-accent transition">ORCID</a>
       </div>
-
-      <div class="bg-card border border-slate-800 rounded-xl p-4">
-        <h3 class="font-semibold mb-2 text-accent">Multimodal & Vision Interpretability</h3>
-        <p class="text-sm text-slate-300">
-          Extending XAI methods from text to vision and multimodal systems for
-          real-world monitoring, environmental and welfare applications.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PUBLICATIONS -->
-  <section id="publications" class="max-w-5xl mx-auto px-4 py-8 fade-section">
-    <h2 class="text-2xl font-semibold mb-4 border-b border-slate-700 pb-2">
-      Selected Publications
-    </h2>
-
-    <p class="text-sm text-slate-400 mb-3">
-      The list below is rendered dynamically from a JavaScript publication list.
-      
-    </p>
-
-    <div id="pub-list" class="space-y-4"></div>
-  </section>
-
-  <!-- LINKS -->
-  <section id="links" class="max-w-5xl mx-auto px-4 py-8 fade-section">
-    <h2 class="text-2xl font-semibold mb-4 border-b border-slate-700 pb-2">
-      Research Profiles & Links
-    </h2>
-
-    <div class="flex flex-wrap gap-3 text-sm">
-      <a
-        href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ&hl=en&authuser=1"
-        target="_blank"
-        class="px-3 py-2 rounded-lg border border-slate-700 hover:border-accent hover:text-accent transition"
-      >
-        Google Scholar
-      </a>
-      <a
-        href="https://orcid.org/0009-0001-0190-2167"
-        target="_blank"
-        class="px-3 py-2 rounded-lg border border-slate-700 hover:border-accent hover:text-accent transition"
-      >
-        ORCID
-      </a>
-      <a
-        href="https://www.researchgate.net/profile/Steve-Nwaiwu"
-        target="_blank"
-        class="px-3 py-2 rounded-lg border border-slate-700 hover:border-accent hover:text-accent transition"
-      >
-        ResearchGate
-      </a>
-      <a
-        href="https://www.linkedin.com/in/steve0147/"
-        target="_blank"
-        class="px-3 py-2 rounded-lg border border-slate-700 hover:border-accent hover:text-accent transition"
-      >
-        LinkedIn
-      </a>
-      <a
-        href="https://github.com/Stevebankz"
-        target="_blank"
-        class="px-3 py-2 rounded-lg border border-slate-700 hover:border-accent hover:text-accent transition"
-      >
-        GitHub
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-slate-800 mt-8">
-    <div class="max-w-5xl mx-auto px-4 py-4 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <span>© <span id="year"></span> Steve Nwaiwu — AI Research Portfolio</span>
-      <span>Built with GitHub Pages & Tailwind CSS</span>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script>
-    // Auto year in footer
+    // 1. Auto year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ************** PUBLICATIONS DATA **************
-// Edit this list when you have new publications.
-const publications = [
-  {
-    title: "Decoding Disinformation: A Feature-Driven Explainable AI Approach to Multi-Domain Fake News Detection",
-    authors: "Nwaiwu S, Jongsawat N, Tungkasthan A",
-    venue: "Applied Sciences, 2025",
-    links: [
-      { label: "DOI", url: "https://doi.org/10.3390/app15179498" }
-    ]
-  },
-  {
-    title: "The brittleness of transformer feature fusion: A comparative study of model robustness in engineering misinformation detection",
-    authors: "Steve Nwaiwu, Nipat Jongsawat, Anucha Tungkasthan",
-    venue: "Results in Engineering, 2025",
-    links: [
-      { label: "DOI", url: "https://doi.org/10.1016/j.rineng.2025.107783" }
-    ]
-  },
-  {
-    title: "Fine-Tuned BERT Model for Hate Speech Detection in Political Discourse",
-    authors: "S. Nwaiwu, N. Jongsawat, A. Tungkasthan, J. Thaloey",
-    venue: "22nd International Conference on ICT & Knowledge Engineering (ICT&KE), 2024",
-    links: [
-      { label: "DOI", url: "https://doi.org/10.1109/ICTKE62841.2024.10787162" }
-    ]
-  },
-  {
-    title: "Parameter-efficient fine-tuning for low-resource text classification: a comparative study of LoRA, IA3, and ReFT",
-    authors: "Nwaiwu S",
-    venue: "Frontiers in Big Data, 2025",
-    links: [
-      { label: "DOI", url: "https://doi.org/10.3389/fdata.2025.1677331" }
-    ]
-  }
-];
-
+    // 2. Publication Data
+    const publications = [
+      {
+        title: "Decoding Disinformation: A Feature-Driven Explainable AI Approach",
+        authors: "Nwaiwu S, Jongsawat N, Tungkasthan A",
+        venue: "Applied Sciences, 2025",
+        tags: ["XAI", "Fake News"],
+        links: [
+          { label: "DOI", url: "https://doi.org/10.3390/app15179498", icon: "ph-link" },
+          // { label: "PDF", url: "#", icon: "ph-file-pdf" } // Example of adding PDF link
+        ]
+      },
+      {
+        title: "The brittleness of transformer feature fusion: A comparative study of model robustness",
+        authors: "Steve Nwaiwu, Nipat Jongsawat, Anucha Tungkasthan",
+        venue: "Results in Engineering, 2025",
+        tags: ["Robustness", "NLP"],
+        links: [
+          { label: "DOI", url: "https://doi.org/10.1016/j.rineng.2025.107783", icon: "ph-link" }
+        ]
+      },
+      {
+        title: "Fine-Tuned BERT Model for Hate Speech Detection in Political Discourse",
+        authors: "S. Nwaiwu, N. Jongsawat, A. Tungkasthan, J. Thaloey",
+        venue: "ICT&KE, 2024",
+        tags: ["Hate Speech", "BERT"],
+        links: [
+          { label: "DOI", url: "https://doi.org/10.1109/ICTKE62841.2024.10787162", icon: "ph-link" }
+        ]
+      },
+      {
+        title: "Parameter-efficient fine-tuning for low-resource text classification",
+        authors: "Nwaiwu S",
+        venue: "Frontiers in Big Data, 2025",
+        tags: ["PEFT", "LoRA"],
+        links: [
+          { label: "DOI", url: "https://doi.org/10.3389/fdata.2025.1677331", icon: "ph-link" }
+        ]
+      }
+    ];
 
     function renderPublications() {
       const container = document.getElementById('pub-list');
       container.innerHTML = '';
 
-      publications.forEach((pub, idx) => {
+      publications.forEach((pub) => {
         const card = document.createElement('div');
-        card.className =
-          "bg-card border border-slate-800 rounded-xl p-4 hover:border-accent transition";
+        card.className = "bg-card/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition group";
+        
+        // Generate Tags HTML
+        const tagsHtml = pub.tags ? pub.tags.map(tag => 
+            `<span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">${tag}</span>`
+        ).join('') : '';
+
+        // Generate Links HTML with Icons
+        const linksHtml = pub.links.map(l => 
+            `<a href="${l.url}" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-slate-800 hover:bg-accent hover:text-slate-900 border border-slate-700 hover:border-accent text-xs transition font-medium">
+               <i class="ph ${l.icon}"></i> ${l.label}
+             </a>`
+        ).join('');
 
         card.innerHTML = `
-          <div class="text-sm">
-            <div class="font-semibold mb-1">${idx + 1}. ${pub.title}</div>
-            <div class="text-slate-300 mb-1">${pub.authors}</div>
-            <div class="text-slate-400 mb-2">${pub.venue}</div>
-            ${
-              pub.links && pub.links.length
-                ? `<div class="flex flex-wrap gap-2 text-xs">
-                    ${pub.links
-                      .map(
-                        (l) => `<a href="${l.url}" target="_blank"
-                                  class="px-2 py-1 rounded-full border border-slate-700 hover:border-accent hover:text-accent transition">
-                                  [${l.label}]
-                                </a>`
-                      )
-                      .join('')}
-                  </div>`
-                : ''
-            }
+          <div class="flex flex-col gap-2">
+            <div class="flex items-start justify-between gap-4">
+                <h3 class="font-bold text-slate-100 group-hover:text-accent transition">${pub.title}</h3>
+                <span class="hidden sm:flex gap-2 shrink-0">${tagsHtml}</span>
+            </div>
+            <div class="text-sm text-slate-400">${pub.authors}</div>
+            <div class="flex flex-wrap items-center justify-between gap-4 mt-1">
+                <div class="text-xs font-mono text-slate-500 bg-slate-900/50 px-2 py-1 rounded">${pub.venue}</div>
+                <div class="flex gap-2">${linksHtml}</div>
+            </div>
           </div>
         `;
         container.appendChild(card);
@@ -305,22 +323,40 @@ const publications = [
 
     renderPublications();
 
-    // ************** SCROLL ANIMATIONS **************
-    const faders = document.querySelectorAll('.fade-section');
+    // 3. Scroll Animations & Active Nav
+    const observerOptions = { threshold: 0.1 };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
+    document.querySelectorAll('.fade-section').forEach((el) => observer.observe(el));
+
+    // Active Navigation Scroll Spy
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= sectionTop - 150) {
+                current = section.getAttribute('id');
+            }
         });
-      },
-      { threshold: 0.15 }
-    );
 
-    faders.forEach((el) => observer.observe(el));
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('active');
+            }
+        });
+    });
   </script>
 </body>
 </html>
