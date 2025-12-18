@@ -3,19 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <title>Steve Nwaiwu | AI Researcher & Practitioner</title>
   <meta name="description" content="Academic portfolio of Steve Nwaiwu, specializing in Explainable AI (XAI), Robust Machine Learning, and Neuro-symbolic reasoning." />
-  <meta name="keywords" content="Steve Nwaiwu, AI Research, XAI, NLP, Machine Learning, RMUTT" />
+  <meta name="keywords" content="Steve Nwaiwu, AI Research, XAI, NLP, Machine Learning, Robustness, Neuro-symbolic AI" />
   <meta name="author" content="Steve Nwaiwu" />
-  
+
   <meta property="og:title" content="Steve Nwaiwu | AI Research Portfolio" />
-  <meta property="og:description" content="Exploring the intersection of XAI, Robustness, and Neuro-symbolic AI." />
+  <meta property="og:description" content="Exploring Explainable AI, robustness, and neuro-symbolic reasoning for reliable AI systems." />
   <meta property="og:type" content="website" />
 
+  <meta name="theme-color" content="#020617" />
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+  <!-- Phosphor Icons -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Schema.org (discoverability) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Steve Nwaiwu",
+    "jobTitle": "AI Researcher",
+    "sameAs": [
+      "https://scholar.google.com/citations?user=Ns0AbcgAAAAJ",
+      "https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424",
+      "https://github.com/Stevebankz",
+      "https://linkedin.com/in/steve0147/"
+    ]
+  }
+  </script>
 
   <script>
     tailwind.config = {
@@ -23,12 +42,13 @@
         extend: {
           colors: {
             background: '#020617', // slate-950
-            card: '#0f172a',       // slate-900 (slightly lighter than bg)
+            card: '#0f172a',       // slate-900
             accent: '#38bdf8',     // sky-400
             secondary: '#94a3b8',  // slate-400
           },
           animation: {
-            'blob': 'blob 7s infinite',
+            blob: 'blob 7s infinite',
+            floaty: 'floaty 6s ease-in-out infinite',
           },
           keyframes: {
             blob: {
@@ -36,6 +56,10 @@
               '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
               '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
               '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            floaty: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' },
             }
           }
         },
@@ -45,125 +69,182 @@
 
   <style>
     /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #020617; 
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #334155; 
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #38bdf8; 
-    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #020617; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
 
-    /* Animation Utilities */
+    /* Fade-in sections */
     .fade-section {
       opacity: 0;
       transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
     }
-    .fade-section.visible {
+    .fade-section.visible { opacity: 1; transform: translateY(0); }
+
+    /* Nav active */
+    .nav-link.active { color: #38bdf8; font-weight: 600; }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateY(-10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 200ms ease;
+    }
+    .mobile-menu.open {
+      transform: translateY(0px);
       opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Navigation Active State */
-    .nav-link.active {
-      color: #38bdf8; /* accent color */
-      font-weight: 600;
+      pointer-events: auto;
     }
   </style>
 </head>
 
 <body class="bg-background text-slate-100 min-h-screen relative overflow-x-hidden selection:bg-accent selection:text-slate-900">
 
+  <!-- Ambient background blobs -->
   <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
     <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
-    <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-    <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob" style="animation-delay: 2s;"></div>
+    <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob" style="animation-delay: 4s;"></div>
   </div>
 
+  <!-- Header -->
   <header class="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
     <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
-      <a href="#" class="font-semibold tracking-tight hover:text-accent transition">
+      <a href="#" class="font-semibold tracking-tight hover:text-accent transition flex items-center gap-2">
         <span class="text-slate-100">Steve Nwaiwu</span>
-        <span class="hidden sm:inline text-accent text-xs ml-2 uppercase tracking-widest border border-slate-700 rounded px-1 py-0.5">Researcher</span>
+        <span class="hidden sm:inline text-accent text-xs uppercase tracking-widest border border-slate-700 rounded px-2 py-0.5">
+          Researcher
+        </span>
+        <span class="hidden sm:inline text-xs uppercase tracking-widest border border-accent/40 text-accent rounded px-2 py-0.5">
+          Open to PhD Collaboration
+        </span>
       </a>
-      
+
       <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
         <a href="#about" class="nav-link hover:text-accent transition">About</a>
         <a href="#news" class="nav-link hover:text-accent transition">News</a>
         <a href="#research" class="nav-link hover:text-accent transition">Interests</a>
+        <a href="#directions" class="nav-link hover:text-accent transition">Directions</a>
         <a href="#publications" class="nav-link hover:text-accent transition">Publications</a>
+        <a href="#contact" class="nav-link hover:text-accent transition">Contact</a>
       </nav>
 
-      <button class="md:hidden text-slate-300 hover:text-accent">
+      <button id="menuBtn" class="md:hidden text-slate-300 hover:text-accent" aria-label="Open Menu">
         <i class="ph ph-list text-2xl"></i>
       </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden border-t border-slate-800 bg-background/95 backdrop-blur-md">
+      <div class="max-w-5xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm font-medium text-slate-300">
+        <a href="#about" class="nav-link hover:text-accent transition">About</a>
+        <a href="#news" class="nav-link hover:text-accent transition">News</a>
+        <a href="#research" class="nav-link hover:text-accent transition">Interests</a>
+        <a href="#directions" class="nav-link hover:text-accent transition">Directions</a>
+        <a href="#publications" class="nav-link hover:text-accent transition">Publications</a>
+        <a href="#contact" class="nav-link hover:text-accent transition">Contact</a>
+      </div>
     </div>
   </header>
 
   <main class="pt-20">
+
+    <!-- ABOUT / HERO -->
     <section id="about" class="max-w-5xl mx-auto px-4 py-16 sm:py-24 fade-section">
       <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
-        <div class="relative group">
+
+        <div class="relative group animate-floaty">
           <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
           <img
-            src="your-photo.jpg" 
+            src="your-photo.jpg"
             alt="Steve Nwaiwu Portrait"
             class="relative w-40 h-40 rounded-full object-cover border-2 border-slate-800 shadow-2xl"
           />
         </div>
 
         <div class="flex-1 text-center md:text-left">
-          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-white">
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-3 text-white">
             Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500">Steve</span>.
           </h1>
+
+          <p class="text-sm text-slate-400 font-mono mb-5">
+            AI Researcher · Explainable AI · Robust NLP · Neuro-Symbolic Reasoning
+          </p>
+
           <p class="text-lg text-slate-300 mb-6 leading-relaxed max-w-2xl">
-            I am a research-driven AI practitioner focused on <span class="text-accent">Explainable AI</span>, <span class="text-accent">Robust ML</span>, and <span class="text-accent">Neuro-symbolic reasoning</span>. 
-            I build <span class="font-semibold text-slate-100">transparent and reliable AI systems</span> for high-stakes real-world environments, bridging the gap between deep learning performance and human interpretability.
+            I am an AI researcher working at the intersection of
+            <span class="text-accent">Explainable AI</span>,
+            <span class="text-accent">robust machine learning</span>, and
+            <span class="text-accent">neuro-symbolic reasoning</span>.
+            My research focuses on making large models
+            <span class="font-semibold text-slate-100">interpretable, verifiable, and reliable</span>
+            in high-stakes domains such as misinformation detection and social harm analysis.
           </p>
 
           <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-6">
             <a href="cv.pdf" download class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 text-slate-900 font-semibold text-sm hover:bg-white hover:scale-105 transition transform">
               <i class="ph-bold ph-download-simple"></i> Download CV
             </a>
+
             <a href="mailto:chinonso_s@mail.rmutt.ac.th" class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-700 text-slate-300 text-sm hover:border-accent hover:text-accent hover:bg-accent/5 transition">
               <i class="ph-bold ph-envelope"></i> Contact Me
             </a>
+
             <div class="flex items-center gap-2 px-2 text-slate-500">
-              <a href="https://github.com/Stevebankz" target="_blank" class="p-2 hover:text-white transition"><i class="ph-fill ph-github-logo text-xl"></i></a>
-              <a href="https://linkedin.com/in/steve0147/" target="_blank" class="p-2 hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
-              <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="p-2 hover:text-white transition"><i class="ph-fill ph-graduation-cap text-xl"></i></a>
-               <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank" class="p-2 hover:text-white transition">
-                  <i class="ph-fill ph-book-open text-xl"></i>
+              <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="p-2 hover:text-white transition" aria-label="Google Scholar">
+                <i class="ph-fill ph-graduation-cap text-xl"></i>
+              </a>
+              <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank" class="p-2 hover:text-white transition" aria-label="Semantic Scholar">
+                <i class="ph-fill ph-book-open text-xl"></i>
+              </a>
+              <a href="https://github.com/Stevebankz" target="_blank" class="p-2 hover:text-white transition" aria-label="GitHub">
+                <i class="ph-fill ph-github-logo text-xl"></i>
+              </a>
+              <a href="https://linkedin.com/in/steve0147/" target="_blank" class="p-2 hover:text-white transition" aria-label="LinkedIn">
+                <i class="ph-fill ph-linkedin-logo text-xl"></i>
+              </a>
             </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-2">
+            <span class="text-xs px-3 py-1 rounded-full border border-slate-800 bg-slate-900/40 text-slate-300">XAI</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-slate-800 bg-slate-900/40 text-slate-300">Robustness</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-slate-800 bg-slate-900/40 text-slate-300">NLP</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-slate-800 bg-slate-900/40 text-slate-300">Neuro-Symbolic AI</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-slate-800 bg-slate-900/40 text-slate-300">Misinformation</span>
           </div>
         </div>
       </div>
     </section>
-    
+
+    <!-- NEWS -->
     <section id="news" class="max-w-5xl mx-auto px-4 py-12 fade-section">
-        <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
-          <i class="ph-duotone ph-megaphone text-accent"></i> Recent Updates
-        </h2>
-        <div class="border-l-2 border-slate-800 ml-3 space-y-8">
-            <div class="relative pl-8">
-                <span class="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-slate-900 border-2 border-accent"></span>
-                <span class="text-xs font-mono text-accent mb-1 block">Jan 2025</span>
-                <p class="text-slate-300">Paper titled <strong>"Decoding Disinformation"</strong> published in <em class="text-slate-400">Applied Sciences</em>.</p>
-            </div>
-            <div class="relative pl-8">
-                <span class="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-slate-900 border-2 border-slate-600"></span>
-                <span class="text-xs font-mono text-slate-500 mb-1 block">Dec 2024</span>
-                <p class="text-slate-300">Presented research on Hate Speech Detection at the <strong>ICT&KE 2024 Conference</strong>.</p>
-            </div>
+      <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
+        <i class="ph-duotone ph-megaphone text-accent"></i> Recent Updates
+      </h2>
+
+      <div class="border-l-2 border-slate-800 ml-3 space-y-8">
+        <div class="relative pl-8">
+          <span class="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-slate-900 border-2 border-accent"></span>
+          <span class="text-xs font-mono text-accent mb-1 block">Jan 2025</span>
+          <p class="text-slate-300">
+            Paper titled <strong>"Decoding Disinformation"</strong> published in <em class="text-slate-400">Applied Sciences</em>.
+          </p>
         </div>
+
+        <div class="relative pl-8">
+          <span class="absolute -left-[9px] top-1 h-4 w-4 rounded-full bg-slate-900 border-2 border-slate-600"></span>
+          <span class="text-xs font-mono text-slate-500 mb-1 block">Dec 2024</span>
+          <p class="text-slate-300">
+            Presented research on Hate Speech Detection at the <strong>ICT&KE 2024 Conference</strong>.
+          </p>
+        </div>
+      </div>
     </section>
 
+    <!-- RESEARCH INTERESTS -->
     <section id="research" class="max-w-5xl mx-auto px-4 py-12 fade-section">
       <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
         <i class="ph-duotone ph-brain text-accent"></i> Research Interests
@@ -176,7 +257,7 @@
           </div>
           <h3 class="font-semibold mb-2 text-slate-100">Explainable & Robust AI</h3>
           <p class="text-sm text-slate-400 leading-relaxed">
-            Investigating layer-wise interpretability (LRP), causal rationale stability, and evaluating deep models under adversarial perturbations to ensure reliability.
+            Layer-wise interpretability (LRP), causal rationale stability, and robust evaluation under distribution shift and adversarial perturbations.
           </p>
         </div>
 
@@ -186,7 +267,7 @@
           </div>
           <h3 class="font-semibold mb-2 text-slate-100">Neuro-Symbolic Reasoning</h3>
           <p class="text-sm text-slate-400 leading-relaxed">
-            Bridging neural representations with symbolic logic and causal abstractions to verify and align model reasoning with its actions.
+            Bridging neural representations with symbolic constraints and causal abstractions to verify and align model reasoning with its actions.
           </p>
         </div>
 
@@ -196,7 +277,7 @@
           </div>
           <h3 class="font-semibold mb-2 text-slate-100">Social Harm Detection</h3>
           <p class="text-sm text-slate-400 leading-relaxed">
-            Weakly supervised NLP for misinformation and hate speech detection, emphasizing fairness and mitigating bias in high-stakes deployments.
+            Interpretable NLP for misinformation and hate speech detection, emphasizing fairness, reliability, and mitigation of harmful bias.
           </p>
         </div>
 
@@ -206,46 +287,166 @@
           </div>
           <h3 class="font-semibold mb-2 text-slate-100">Multimodal Interpretability</h3>
           <p class="text-sm text-slate-400 leading-relaxed">
-            Extending XAI methods from text to vision systems for real-world monitoring, environmental, and welfare applications.
+            Extending XAI methods from text to vision systems for real-world monitoring, welfare, environmental, and safety applications.
           </p>
         </div>
       </div>
     </section>
 
+    <!-- DIRECTIONS (new high-impact section) -->
+    <section id="directions" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+      <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
+        <i class="ph-duotone ph-compass text-accent"></i> Current Research Directions
+      </h2>
+
+      <div class="bg-card/40 border border-slate-800 rounded-xl p-6">
+        <ul class="space-y-4 text-slate-300 text-sm leading-relaxed max-w-3xl">
+          <li>
+            <span class="text-accent font-semibold">• Robust Explainability:</span>
+            Studying stability and faithfulness of explanations under distribution shift and adversarial perturbations.
+          </li>
+          <li>
+            <span class="text-accent font-semibold">• Causal & Neuro-Symbolic AI:</span>
+            Integrating symbolic constraints and causal abstractions into neural pipelines for verifiable reasoning.
+          </li>
+          <li>
+            <span class="text-accent font-semibold">• Social Harm & Misinformation:</span>
+            Building interpretable multilingual NLP systems for hate speech and disinformation detection.
+          </li>
+        </ul>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">Evaluation</span>
+          <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">Interpretability</span>
+          <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">Robustness</span>
+          <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">Causality</span>
+          <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">NLP</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
     <section id="publications" class="max-w-5xl mx-auto px-4 py-12 fade-section">
-      <div class="flex items-center justify-between mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <h2 class="flex items-center gap-2 text-2xl font-semibold text-slate-100">
-            <i class="ph-duotone ph-books text-accent"></i> Selected Publications
+          <i class="ph-duotone ph-books text-accent"></i> Selected Publications
         </h2>
-        <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="text-xs text-accent hover:underline flex items-center gap-1">
-            View Google Scholar <i class="ph-bold ph-arrow-up-right"></i>
-        </a>
+
+        <div class="flex gap-3 text-xs">
+          <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank"
+             class="text-accent hover:underline flex items-center gap-1">
+            Google Scholar <i class="ph-bold ph-arrow-up-right"></i>
+          </a>
+          <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank"
+             class="text-accent hover:underline flex items-center gap-1">
+            Semantic Scholar <i class="ph-bold ph-arrow-up-right"></i>
+          </a>
+        </div>
       </div>
 
       <div id="pub-list" class="space-y-4"></div>
+      <p class="text-xs text-slate-500 mt-4">
+        Tip: Add PDF/BibTeX links per paper when available.
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+      <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
+        <i class="ph-duotone ph-paper-plane-tilt text-accent"></i> Contact
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-card/40 border border-slate-800 rounded-xl p-6">
+          <h3 class="font-semibold text-slate-100 mb-2">Email</h3>
+          <p class="text-sm text-slate-400 mb-4">
+            Best for research collaboration, supervision inquiries, and speaking invitations.
+          </p>
+          <a href="mailto:chinonso_s@mail.rmutt.ac.th"
+             class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+            <i class="ph-bold ph-envelope"></i> chinonso_s@mail.rmutt.ac.th
+          </a>
+        </div>
+
+        <div class="bg-card/40 border border-slate-800 rounded-xl p-6">
+          <h3 class="font-semibold text-slate-100 mb-2">Profiles</h3>
+          <p class="text-sm text-slate-400 mb-4">
+            Publications, citations, code, and professional activity.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+              <i class="ph-fill ph-graduation-cap"></i> Google Scholar
+            </a>
+            <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+              <i class="ph-fill ph-book-open"></i> Semantic Scholar
+            </a>
+            <a href="https://github.com/Stevebankz" target="_blank"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+              <i class="ph-fill ph-github-logo"></i> GitHub
+            </a>
+            <a href="https://linkedin.com/in/steve0147/" target="_blank"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+              <i class="ph-fill ph-linkedin-logo"></i> LinkedIn
+            </a>
+            <!-- Optional: add ORCID when you have it -->
+            <!--
+            <a href="https://orcid.org/YOUR-ID" target="_blank"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+              <i class="ph-fill ph-identification-card"></i> ORCID
+            </a>
+            -->
+          </div>
+        </div>
+      </div>
     </section>
 
   </main>
 
+  <!-- Footer -->
   <footer class="border-t border-slate-800 bg-slate-950 mt-12">
     <div class="max-w-5xl mx-auto px-4 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex flex-col items-center md:items-start">
         <span class="font-semibold text-slate-400">Steve Nwaiwu</span>
         <span class="text-xs">© <span id="year"></span> All rights reserved.</span>
       </div>
-      <div class="flex gap-4">
-         <a href="#" class="hover:text-accent transition">Github</a>
-         <a href="#" class="hover:text-accent transition">LinkedIn</a>
-         <a href="#" class="hover:text-accent transition">ORCID</a>
+
+      <div class="flex gap-4 text-xs">
+        <a href="https://github.com/Stevebankz" target="_blank" class="hover:text-accent transition">GitHub</a>
+        <a href="https://linkedin.com/in/steve0147/" target="_blank" class="hover:text-accent transition">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="hover:text-accent transition">Google Scholar</a>
+        <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank" class="hover:text-accent transition">Semantic Scholar</a>
+        <!-- Optional ORCID -->
+        <!-- <a href="https://orcid.org/YOUR-ID" target="_blank" class="hover:text-accent transition">ORCID</a> -->
       </div>
     </div>
   </footer>
 
   <script>
-    // 1. Auto year
+    // 1) Auto year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 2. Publication Data
+    // 2) Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      const icon = menuBtn.querySelector('i');
+      icon.className = mobileMenu.classList.contains('open') ? 'ph ph-x text-2xl' : 'ph ph-list text-2xl';
+    });
+
+    // Close mobile menu on click
+    document.querySelectorAll('#mobileMenu a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        const icon = menuBtn.querySelector('i');
+        icon.className = 'ph ph-list text-2xl';
+      });
+    });
+
+    // 3) Publication Data
     const publications = [
       {
         title: "Decoding Disinformation: A Feature-Driven Explainable AI Approach",
@@ -254,7 +455,8 @@
         tags: ["XAI", "Fake News"],
         links: [
           { label: "DOI", url: "https://doi.org/10.3390/app15179498", icon: "ph-link" },
-          // { label: "PDF", url: "#", icon: "ph-file-pdf" } // Example of adding PDF link
+          // { label: "PDF", url: "#", icon: "ph-file-pdf" },
+          // { label: "BibTeX", url: "#", icon: "ph-code" }
         ]
       },
       {
@@ -293,30 +495,29 @@
       publications.forEach((pub) => {
         const card = document.createElement('div');
         card.className = "bg-card/50 border border-slate-800 rounded-xl p-5 hover:border-slate-600 transition group";
-        
-        // Generate Tags HTML
-        const tagsHtml = pub.tags ? pub.tags.map(tag => 
-            `<span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">${tag}</span>`
-        ).join('') : '';
 
-        // Generate Links HTML with Icons
-        const linksHtml = pub.links.map(l => 
-            `<a href="${l.url}" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-slate-800 hover:bg-accent hover:text-slate-900 border border-slate-700 hover:border-accent text-xs transition font-medium">
-               <i class="ph ${l.icon}"></i> ${l.label}
-             </a>`
+        const tagsHtml = (pub.tags || []).map(tag =>
+          `<span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">${tag}</span>`
+        ).join('');
+
+        const linksHtml = (pub.links || []).map(l =>
+          `<a href="${l.url}" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-slate-800 hover:bg-accent hover:text-slate-900 border border-slate-700 hover:border-accent text-xs transition font-medium">
+             <i class="ph ${l.icon}"></i> ${l.label}
+           </a>`
         ).join('');
 
         card.innerHTML = `
           <div class="flex flex-col gap-2">
             <div class="flex items-start justify-between gap-4">
-                <h3 class="font-bold text-slate-100 group-hover:text-accent transition">${pub.title}</h3>
-                <span class="hidden sm:flex gap-2 shrink-0">${tagsHtml}</span>
+              <h3 class="font-bold text-slate-100 group-hover:text-accent transition">${pub.title}</h3>
+              <span class="hidden sm:flex gap-2 shrink-0">${tagsHtml}</span>
             </div>
             <div class="text-sm text-slate-400">${pub.authors}</div>
             <div class="flex flex-wrap items-center justify-between gap-4 mt-1">
-                <div class="text-xs font-mono text-slate-500 bg-slate-900/50 px-2 py-1 rounded">${pub.venue}</div>
-                <div class="flex gap-2">${linksHtml}</div>
+              <div class="text-xs font-mono text-slate-500 bg-slate-900/50 px-2 py-1 rounded">${pub.venue}</div>
+              <div class="flex gap-2 flex-wrap">${linksHtml}</div>
             </div>
+            <div class="sm:hidden flex flex-wrap gap-2 mt-2">${tagsHtml}</div>
           </div>
         `;
         container.appendChild(card);
@@ -325,9 +526,8 @@
 
     renderPublications();
 
-    // 3. Scroll Animations & Active Nav
-    const observerOptions = { threshold: 0.1 };
-    
+    // 4) Fade sections
+    const observerOptions = { threshold: 0.12 };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -339,26 +539,23 @@
 
     document.querySelectorAll('.fade-section').forEach((el) => observer.observe(el));
 
-    // Active Navigation Scroll Spy
+    // 5) Scroll spy
     window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (scrollY >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
-        });
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      let current = '';
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
-        });
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (scrollY >= sectionTop - 160) current = section.getAttribute('id');
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) link.classList.add('active');
+      });
     });
   </script>
+
 </body>
 </html>
