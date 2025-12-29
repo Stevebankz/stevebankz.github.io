@@ -2,7 +2,10 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
 
   <title>Steve Nwaiwu | AI Researcher & Practitioner</title>
   <meta name="description" content="Academic portfolio of Steve Nwaiwu, specializing in Explainable AI (XAI), Robust Machine Learning, and Neuro-symbolic reasoning." />
@@ -47,14 +50,14 @@
             secondary: '#94a3b8',  // slate-400
           },
           animation: {
-            blob: 'blob 7s infinite',
+            blob: 'blob 8s infinite',
             floaty: 'floaty 6s ease-in-out infinite',
           },
           keyframes: {
             blob: {
               '0%': { transform: 'translate(0px, 0px) scale(1)' },
-              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '33%': { transform: 'translate(20px, -35px) scale(1.06)' },
+              '66%': { transform: 'translate(-15px, 18px) scale(0.96)' },
               '100%': { transform: 'translate(0px, 0px) scale(1)' },
             },
             floaty: {
@@ -68,6 +71,9 @@
   </script>
 
   <style>
+    /* Make anchor jumps land below fixed header (mobile-safe) */
+    html { scroll-padding-top: 5.5rem; }
+
     /* Custom Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #020617; }
@@ -85,34 +91,31 @@
     /* Nav active */
     .nav-link.active { color: #38bdf8; font-weight: 600; }
 
-    /* Mobile menu */
-    .mobile-menu {
-      transform: translateY(-10px);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 200ms ease;
-    }
-    .mobile-menu.open {
-      transform: translateY(0px);
-      opacity: 1;
-      pointer-events: auto;
+    /* Mobile menu (iOS-safe): use display toggling rather than pointer-events tricks */
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: block; }
+
+    /* Reduce motion support */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-section { transition: none; transform: none; }
+      .animate-blob, .animate-floaty { animation: none !important; }
     }
   </style>
 </head>
 
 <body class="bg-background text-slate-100 min-h-screen relative overflow-x-hidden selection:bg-accent selection:text-slate-900">
 
-  <!-- Ambient background blobs -->
+  <!-- Ambient background blobs (responsive + motion-safe) -->
   <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
-    <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob" style="animation-delay: 2s;"></div>
-    <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob" style="animation-delay: 4s;"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[70vw] h-[70vw] max-w-[420px] max-h-[420px] bg-blue-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-30 motion-safe:animate-blob"></div>
+    <div class="absolute top-10 right-1/4 w-[55vw] h-[55vw] max-w-[380px] max-h-[380px] bg-cyan-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-25 motion-safe:animate-blob" style="animation-delay: 2s;"></div>
+    <div class="absolute -bottom-40 left-1/3 w-[60vw] h-[60vw] max-w-[420px] max-h-[420px] bg-purple-500/10 rounded-full mix-blend-screen filter blur-3xl opacity-25 motion-safe:animate-blob" style="animation-delay: 4s;"></div>
   </div>
 
   <!-- Header -->
-  <header class="fixed top-0 w-full z-40 bg-background/80 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
-    <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
-      <a href="#" class="font-semibold tracking-tight hover:text-accent transition flex items-center gap-2">
+  <header class="fixed top-0 w-full z-40 bg-background/85 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+    <div class="max-w-5xl mx-auto flex items-center justify-between px-4 py-2 sm:py-3">
+      <a href="#about" class="font-semibold tracking-tight hover:text-accent transition flex items-center gap-2">
         <span class="text-slate-100">Steve Nwaiwu</span>
         <span class="hidden sm:inline text-accent text-xs uppercase tracking-widest border border-slate-700 rounded px-2 py-0.5">
           Researcher
@@ -131,7 +134,7 @@
         <a href="#contact" class="nav-link hover:text-accent transition">Contact</a>
       </nav>
 
-      <button id="menuBtn" class="md:hidden text-slate-300 hover:text-accent" aria-label="Open Menu">
+      <button id="menuBtn" class="md:hidden text-slate-300 hover:text-accent" aria-label="Open Menu" aria-expanded="false" aria-controls="mobileMenu">
         <i class="ph ph-list text-2xl"></i>
       </button>
     </div>
@@ -152,20 +155,20 @@
   <main class="pt-20">
 
     <!-- ABOUT / HERO -->
-    <section id="about" class="max-w-5xl mx-auto px-4 py-16 sm:py-24 fade-section">
+    <section id="about" class="scroll-mt-24 max-w-5xl mx-auto px-4 py-14 sm:py-24 fade-section">
       <div class="flex flex-col md:flex-row items-center md:items-start gap-10">
 
-        <div class="relative group animate-floaty">
+        <div class="relative group motion-safe:animate-floaty">
           <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
           <img
             src="your-photo.jpg"
             alt="Steve Nwaiwu Portrait"
-            class="relative w-40 h-40 rounded-full object-cover border-2 border-slate-800 shadow-2xl"
+            class="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-2 border-slate-800 shadow-2xl"
           />
         </div>
 
         <div class="flex-1 text-center md:text-left">
-          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-3 text-white">
+          <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-3 text-white">
             Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500">Steve</span>.
           </h1>
 
@@ -173,7 +176,7 @@
             AI Researcher · Explainable AI · Robust NLP · Neuro-Symbolic Reasoning
           </p>
 
-          <p class="text-lg text-slate-300 mb-6 leading-relaxed max-w-2xl">
+          <p class="text-base sm:text-lg text-slate-300 mb-6 leading-relaxed max-w-2xl mx-auto md:mx-0">
             I am an AI researcher working at the intersection of
             <span class="text-accent">Explainable AI</span>,
             <span class="text-accent">robust machine learning</span>, and
@@ -193,16 +196,16 @@
             </a>
 
             <div class="flex items-center gap-2 px-2 text-slate-500">
-              <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="p-2 hover:text-white transition" aria-label="Google Scholar">
+              <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="p-2 hover:text-white transition" aria-label="Google Scholar" rel="noopener">
                 <i class="ph-fill ph-graduation-cap text-xl"></i>
               </a>
-              <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank" class="p-2 hover:text-white transition" aria-label="Semantic Scholar">
+              <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank" class="p-2 hover:text-white transition" aria-label="Semantic Scholar" rel="noopener">
                 <i class="ph-fill ph-book-open text-xl"></i>
               </a>
-              <a href="https://github.com/Stevebankz" target="_blank" class="p-2 hover:text-white transition" aria-label="GitHub">
+              <a href="https://github.com/Stevebankz" target="_blank" class="p-2 hover:text-white transition" aria-label="GitHub" rel="noopener">
                 <i class="ph-fill ph-github-logo text-xl"></i>
               </a>
-              <a href="https://linkedin.com/in/steve0147/" target="_blank" class="p-2 hover:text-white transition" aria-label="LinkedIn">
+              <a href="https://linkedin.com/in/steve0147/" target="_blank" class="p-2 hover:text-white transition" aria-label="LinkedIn" rel="noopener">
                 <i class="ph-fill ph-linkedin-logo text-xl"></i>
               </a>
             </div>
@@ -220,7 +223,7 @@
     </section>
 
     <!-- NEWS -->
-    <section id="news" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+    <section id="news" class="scroll-mt-24 max-w-5xl mx-auto px-4 py-12 fade-section">
       <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
         <i class="ph-duotone ph-megaphone text-accent"></i> Recent Updates
       </h2>
@@ -245,7 +248,7 @@
     </section>
 
     <!-- RESEARCH INTERESTS -->
-    <section id="research" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+    <section id="research" class="scroll-mt-24 max-w-5xl mx-auto px-4 py-12 fade-section">
       <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
         <i class="ph-duotone ph-brain text-accent"></i> Research Interests
       </h2>
@@ -293,8 +296,8 @@
       </div>
     </section>
 
-    <!-- DIRECTIONS (new high-impact section) -->
-    <section id="directions" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+    <!-- DIRECTIONS -->
+    <section id="directions" class="scroll-mt-24 max-w-5xl mx-auto px-4 py-12 fade-section">
       <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
         <i class="ph-duotone ph-compass text-accent"></i> Current Research Directions
       </h2>
@@ -326,7 +329,7 @@
     </section>
 
     <!-- PUBLICATIONS -->
-    <section id="publications" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+    <section id="publications" class="scroll-mt-24 max-w-5xl mx-auto px-4 py-12 fade-section">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <h2 class="flex items-center gap-2 text-2xl font-semibold text-slate-100">
           <i class="ph-duotone ph-books text-accent"></i> Selected Publications
@@ -334,24 +337,22 @@
 
         <div class="flex gap-3 text-xs">
           <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank"
-             class="text-accent hover:underline flex items-center gap-1">
+             class="text-accent hover:underline flex items-center gap-1" rel="noopener">
             Google Scholar <i class="ph-bold ph-arrow-up-right"></i>
           </a>
           <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank"
-             class="text-accent hover:underline flex items-center gap-1">
+             class="text-accent hover:underline flex items-center gap-1" rel="noopener">
             Semantic Scholar <i class="ph-bold ph-arrow-up-right"></i>
           </a>
         </div>
       </div>
 
       <div id="pub-list" class="space-y-4"></div>
-      <p class="text-xs text-slate-500 mt-4">
-        
-      </p>
+      <p class="text-xs text-slate-500 mt-4"></p>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="max-w-5xl mx-auto px-4 py-12 fade-section">
+    <section id="contact" class="scroll-mt-24 max-w-5xl mx-auto px-4 py-12 fade-section">
       <h2 class="flex items-center gap-2 text-2xl font-semibold mb-6 text-slate-100">
         <i class="ph-duotone ph-paper-plane-tilt text-accent"></i> Contact
       </h2>
@@ -375,28 +376,21 @@
           </p>
           <div class="flex flex-wrap gap-2">
             <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank"
-               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition" rel="noopener">
               <i class="ph-fill ph-graduation-cap"></i> Google Scholar
             </a>
             <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank"
-               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition" rel="noopener">
               <i class="ph-fill ph-book-open"></i> Semantic Scholar
             </a>
             <a href="https://github.com/Stevebankz" target="_blank"
-               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition" rel="noopener">
               <i class="ph-fill ph-github-logo"></i> GitHub
             </a>
             <a href="https://linkedin.com/in/steve0147/" target="_blank"
-               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition" rel="noopener">
               <i class="ph-fill ph-linkedin-logo"></i> LinkedIn
             </a>
-            <!-- Optional: add ORCID when you have it -->
-            <!--
-            <a href="https://orcid.org/YOUR-ID" target="_blank"
-               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900/50 border border-slate-800 hover:border-accent hover:text-accent transition">
-              <i class="ph-fill ph-identification-card"></i> ORCID
-            </a>
-            -->
           </div>
         </div>
       </div>
@@ -412,13 +406,11 @@
         <span class="text-xs">© <span id="year"></span> All rights reserved.</span>
       </div>
 
-      <div class="flex gap-4 text-xs">
-        <a href="https://github.com/Stevebankz" target="_blank" class="hover:text-accent transition">GitHub</a>
-        <a href="https://linkedin.com/in/steve0147/" target="_blank" class="hover:text-accent transition">LinkedIn</a>
-        <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="hover:text-accent transition">Google Scholar</a>
-        <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank" class="hover:text-accent transition">Semantic Scholar</a>
-        <!-- Optional ORCID -->
-        <!-- <a href="https://orcid.org/YOUR-ID" target="_blank" class="hover:text-accent transition">ORCID</a> -->
+      <div class="flex flex-wrap justify-center gap-4 text-xs">
+        <a href="https://github.com/Stevebankz" target="_blank" class="hover:text-accent transition" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/steve0147/" target="_blank" class="hover:text-accent transition" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=Ns0AbcgAAAAJ" target="_blank" class="hover:text-accent transition" rel="noopener">Google Scholar</a>
+        <a href="https://www.semanticscholar.org/author/Steve-Nwaiwu/2335714424" target="_blank" class="hover:text-accent transition" rel="noopener">Semantic Scholar</a>
       </div>
     </div>
   </footer>
@@ -427,23 +419,43 @@
     // 1) Auto year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 2) Mobile menu toggle
+    // 2) Mobile menu toggle (robust on mobile)
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
+    function setMenu(open) {
+      mobileMenu.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
       const icon = menuBtn.querySelector('i');
-      icon.className = mobileMenu.classList.contains('open') ? 'ph ph-x text-2xl' : 'ph ph-list text-2xl';
+      icon.className = open ? 'ph ph-x text-2xl' : 'ph ph-list text-2xl';
+      if (open) {
+        // prevent background scroll when menu is open
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    menuBtn.addEventListener('click', () => {
+      const open = !mobileMenu.classList.contains('open');
+      setMenu(open);
     });
 
-    // Close mobile menu on click
+    // Close mobile menu when clicking a link
     document.querySelectorAll('#mobileMenu a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        const icon = menuBtn.querySelector('i');
-        icon.className = 'ph ph-list text-2xl';
-      });
+      a.addEventListener('click', () => setMenu(false));
+    });
+
+    // Close menu on outside tap (mobile-friendly)
+    document.addEventListener('click', (e) => {
+      if (!mobileMenu.classList.contains('open')) return;
+      const clickedInside = mobileMenu.contains(e.target) || menuBtn.contains(e.target);
+      if (!clickedInside) setMenu(false);
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
     });
 
     // 3) Publication Data
@@ -454,9 +466,7 @@
         venue: "Applied Sciences, 2025",
         tags: ["XAI", "Fake News"],
         links: [
-          { label: "DOI", url: "https://doi.org/10.3390/app15179498", icon: "ph-link" },
-          // { label: "PDF", url: "#", icon: "ph-file-pdf" },
-          // { label: "BibTeX", url: "#", icon: "ph-code" }
+          { label: "DOI", url: "https://doi.org/10.3390/app15179498", icon: "ph-link" }
         ]
       },
       {
@@ -500,23 +510,32 @@
           `<span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">${tag}</span>`
         ).join('');
 
+        // Mobile-friendly buttons: stack on mobile, row on larger screens
         const linksHtml = (pub.links || []).map(l =>
-          `<a href="${l.url}" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-slate-800 hover:bg-accent hover:text-slate-900 border border-slate-700 hover:border-accent text-xs transition font-medium">
+          `<a href="${l.url}" target="_blank" rel="noopener"
+              class="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-md bg-slate-800 hover:bg-accent hover:text-slate-900 border border-slate-700 hover:border-accent text-xs transition font-medium w-full sm:w-auto">
              <i class="ph ${l.icon}"></i> ${l.label}
            </a>`
         ).join('');
 
         card.innerHTML = `
           <div class="flex flex-col gap-2">
-            <div class="flex items-start justify-between gap-4">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
               <h3 class="font-bold text-slate-100 group-hover:text-accent transition">${pub.title}</h3>
               <span class="hidden sm:flex gap-2 shrink-0">${tagsHtml}</span>
             </div>
+
             <div class="text-sm text-slate-400">${pub.authors}</div>
-            <div class="flex flex-wrap items-center justify-between gap-4 mt-1">
-              <div class="text-xs font-mono text-slate-500 bg-slate-900/50 px-2 py-1 rounded">${pub.venue}</div>
-              <div class="flex gap-2 flex-wrap">${linksHtml}</div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-1">
+              <div class="text-xs font-mono text-slate-500 bg-slate-900/50 px-2 py-1 rounded w-fit">
+                ${pub.venue}
+              </div>
+              <div class="grid grid-cols-1 sm:flex gap-2">
+                ${linksHtml}
+              </div>
             </div>
+
             <div class="sm:hidden flex flex-wrap gap-2 mt-2">${tagsHtml}</div>
           </div>
         `;
@@ -539,22 +558,38 @@
 
     document.querySelectorAll('.fade-section').forEach((el) => observer.observe(el));
 
-    // 5) Scroll spy
-    window.addEventListener('scroll', () => {
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('.nav-link');
-      let current = '';
+    // 5) Scroll spy (mobile-safe): IntersectionObserver instead of scroll math
+    const sectionIds = ['about','news','research','directions','publications','contact'];
+    const sections = sectionIds
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
 
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 160) current = section.getAttribute('id');
-      });
+    const allNavLinks = Array.from(document.querySelectorAll('.nav-link'));
 
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) link.classList.add('active');
+    function setActive(id) {
+      allNavLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
       });
+    }
+
+    // choose section nearest to top using rootMargin
+    const spy = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visible.length) setActive(visible[0].target.id);
+    }, {
+      // top area accounts for fixed header; bottom reduces noise
+      root: null,
+      rootMargin: '-30% 0px -60% 0px',
+      threshold: [0.08, 0.12, 0.2, 0.3]
     });
+
+    sections.forEach(s => spy.observe(s));
+
+    // Set initial active state
+    setActive('about');
   </script>
 
 </body>
